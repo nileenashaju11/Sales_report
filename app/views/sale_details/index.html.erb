@@ -1,0 +1,241 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+    	<script >
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: '<b>Yearly Sales Data</b>'
+    },
+    
+    xAxis: {
+        categories:["2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        max:250000,
+        title: {
+            text: 'Value'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Profit',
+        data: <%= @report_profit%>
+
+    }, {
+        name: 'Quantity',
+        data: <%= @report_quntity%>
+    }]
+},
+{
+ chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Browser market shares in January, 2018'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Chrome',
+            y: 61.41,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Internet Explorer',
+            y: 11.84
+        }, {
+            name: 'Firefox',
+            y: 10.85
+        }, {
+            name: 'Edge',
+            y: 4.67
+        }, {
+            name: 'Safari',
+            y: 4.18
+        }, {
+            name: 'Sogou Explorer',
+            y: 1.64
+        }, {
+            name: 'Opera',
+            y: 1.6
+        }, {
+            name: 'QQ',
+            y: 1.2
+        }, {
+            name: 'Other',
+            y: 2.61
+        }]
+    }]
+});
+
+</script>
+
+
+<div>
+	<style>
+		table, th, td {
+  border: 1px solid black;
+}
+	</style>
+
+
+<div>
+<center><h2>Monthly sales report for each year</h2></center>
+<center><table class="table table-bordered" style="border: 1px solid black;">
+  <thead>
+    <tr>
+      <th>Year</th>	
+      <th>jan</th>
+      <th>feb</th>
+      <th>mar</th>
+      <th>apr</th>
+      <th>may</th>
+      <th>jun</th>
+      <th>july</th>
+      <th>aug</th>
+      <th>sep</th>
+      <th>oct</th>
+      <th>nov</th>
+      <th>dec</th>
+      
+      
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% @sale_months_alt.each_pair do |key,value| %>
+
+    
+      <tr>
+        <td><%= key %></td>
+        <td><%= value.select{|val| val[:month]=='01'}.first.try(:[],:quantity) %></td>
+        <td><%= value.select{|val| val[:month]=='02'}.first.try(:[],:quantity) %></td>
+        <td><%= value.select{|val| val[:month]=='03'}.first.try(:[],:quantity) %></td>
+        <td><%= value.select{|val| val[:month]=='04'}.first.try(:[],:quantity) %></td>
+        <td><%= value.select{|val| val[:month]=='05'}.first.try(:[],:quantity) %></td>
+        <td><%= value.select{|val| val[:month]=='06'}.first.try(:[],:quantity) %></td>
+        <td><%= value.select{|val| val[:month]=='07'}.first.try(:[],:quantity) %></td>
+        <td><%= value.select{|val| val[:month]=='08'}.first.try(:[],:quantity) %></td>
+        <td><%= value.select{|val| val[:month]=='09'}.first.try(:[],:quantity) %></td>
+        <td><%= value.select{|val| val[:month]=='10'}.first.try(:[],:quantity)%></td>
+        <td><%= value.select{|val| val[:month]=='11'}.first.try(:[],:quantity)%></td>
+        <td><%= value.select{|val| val[:month]=='12'}.first.try(:[],:quantity) %></td>
+
+      </tr>
+
+  </tbody>
+  <% end %>
+</table></center>
+</div>
+
+<div>
+<center><h2>Monthly profit report for each year</h2></center>
+<center><table class="table table-bordered" style="border: 1px solid black;">
+  <thead>
+    <tr>
+      <th>Year</th>	
+      <th>jan</th>
+      <th>feb</th>
+      <th>mar</th>
+      <th>apr</th>
+      <th>may</th>
+      <th>jun</th>
+      <th>july</th>
+      <th>aug</th>
+      <th>sep</th>
+      <th>oct</th>
+      <th>nov</th>
+      <th>dec</th>
+      
+      
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% @sale_months_alt.each_pair do |key,value| %>
+
+    
+      <tr>
+        <td><%= key %></td>
+        <td><%= value.select{|val| val[:month]=='01'}.first.try(:[],:profit) %></td>
+        <td><%= value.select{|val| val[:month]=='02'}.first.try(:[],:profit) %></td>
+        <td><%= value.select{|val| val[:month]=='03'}.first.try(:[],:profit) %></td>
+        <td><%= value.select{|val| val[:month]=='04'}.first.try(:[],:profit) %></td>
+        <td><%= value.select{|val| val[:month]=='05'}.first.try(:[],:profit) %></td>
+        <td><%= value.select{|val| val[:month]=='06'}.first.try(:[],:profit) %></td>
+        <td><%= value.select{|val| val[:month]=='07'}.first.try(:[],:profit) %></td>
+        <td><%= value.select{|val| val[:month]=='08'}.first.try(:[],:profit) %></td>
+        <td><%= value.select{|val| val[:month]=='09'}.first.try(:[],:profit) %></td>
+        <td><%= value.select{|val| val[:month]=='10'}.first.try(:[],:profit)%></td>
+        <td><%= value.select{|val| val[:month]=='11'}.first.try(:[],:profit)%></td>
+        <td><%= value.select{|val| val[:month]=='12'}.first.try(:[],:profit) %></td>
+
+      </tr>
+
+  </tbody>
+  <% end %>
+</table></center>
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
