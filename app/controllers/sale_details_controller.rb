@@ -26,7 +26,7 @@ class SaleDetailsController < ApplicationController
          buy_price:last_buy_price,
          quantity:trans_quantity,
          sales:sales,
-         profit: profit
+         profit: profit.round(2)
       }
 
     end
@@ -62,13 +62,14 @@ class SaleDetailsController < ApplicationController
       end
       sales=trans_ex_total+trans_tax_total-trans_discount
       profit=sales - last_buy_price
+
       @sale_months << {
          month:i.strftime("%m"),
          year:i.strftime("%Y"),
          buy_price:last_buy_price,
          quantity:trans_quantity,
          sales:sales,
-         profit: profit
+         profit: profit.round(2)
       }
 
     end

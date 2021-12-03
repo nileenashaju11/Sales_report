@@ -129,20 +129,12 @@ Highcharts.chart('container', {
 <center><h2>Monthly sales report for each year</h2></center>
 <center><table class="table table-bordered" style="border: 1px solid black;">
   <thead>
+    <% months=['Jan','Feb','Mar','Apr','May','Jun','July','Aug','Sep','Oct','Nov',"Dec"]%>
     <tr>
       <th>Year</th>	
-      <th>jan</th>
-      <th>feb</th>
-      <th>mar</th>
-      <th>apr</th>
-      <th>may</th>
-      <th>jun</th>
-      <th>july</th>
-      <th>aug</th>
-      <th>sep</th>
-      <th>oct</th>
-      <th>nov</th>
-      <th>dec</th>
+      <% months.each do |month_name| %>
+     <th><%= month_name %></th>
+      <% end %>
       
       
     </tr>
@@ -150,25 +142,14 @@ Highcharts.chart('container', {
 
   <tbody>
   	<% @sale_months_alt.each_pair do |key,value| %>
-
+     <% month_value=['01','02','03','04','05','06','07','08','09','10','11',"12"]%>
     
       <tr>
         <td><%= key %></td>
-        <td><%= value.select{|val| val[:month]=='01'}.first.try(:[],:quantity) %></td>
-        <td><%= value.select{|val| val[:month]=='02'}.first.try(:[],:quantity) %></td>
-        <td><%= value.select{|val| val[:month]=='03'}.first.try(:[],:quantity) %></td>
-        <td><%= value.select{|val| val[:month]=='04'}.first.try(:[],:quantity) %></td>
-        <td><%= value.select{|val| val[:month]=='05'}.first.try(:[],:quantity) %></td>
-        <td><%= value.select{|val| val[:month]=='06'}.first.try(:[],:quantity) %></td>
-        <td><%= value.select{|val| val[:month]=='07'}.first.try(:[],:quantity) %></td>
-        <td><%= value.select{|val| val[:month]=='08'}.first.try(:[],:quantity) %></td>
-        <td><%= value.select{|val| val[:month]=='09'}.first.try(:[],:quantity) %></td>
-        <td><%= value.select{|val| val[:month]=='10'}.first.try(:[],:quantity)%></td>
-        <td><%= value.select{|val| val[:month]=='11'}.first.try(:[],:quantity)%></td>
-        <td><%= value.select{|val| val[:month]=='12'}.first.try(:[],:quantity) %></td>
-
+          <% month_value.each do |i| %>
+         <td><%= value.select{|val| val[:month]==i}.first.try(:[],:quantity) %></td>
+         <% end %>
       </tr>
-
   </tbody>
   <% end %>
 </table></center>
@@ -179,43 +160,22 @@ Highcharts.chart('container', {
 <center><table class="table table-bordered" style="border: 1px solid black;">
   <thead>
     <tr>
-      <th>Year</th>	
-      <th>jan</th>
-      <th>feb</th>
-      <th>mar</th>
-      <th>apr</th>
-      <th>may</th>
-      <th>jun</th>
-      <th>july</th>
-      <th>aug</th>
-      <th>sep</th>
-      <th>oct</th>
-      <th>nov</th>
-      <th>dec</th>
-      
+      <th>Year</th> 
+      <% months.each do |month_name| %>
+     <th><%= month_name %></th>
+      <% end %>
       
     </tr>
   </thead>
 
   <tbody>
+    <% month_value=['01','02','03','04','05','06','07','08','09','10','11',"12"]%>
   	<% @sale_months_alt.each_pair do |key,value| %>
-
-    
-      <tr>
+     <tr>
         <td><%= key %></td>
-        <td><%= value.select{|val| val[:month]=='01'}.first.try(:[],:profit) %></td>
-        <td><%= value.select{|val| val[:month]=='02'}.first.try(:[],:profit) %></td>
-        <td><%= value.select{|val| val[:month]=='03'}.first.try(:[],:profit) %></td>
-        <td><%= value.select{|val| val[:month]=='04'}.first.try(:[],:profit) %></td>
-        <td><%= value.select{|val| val[:month]=='05'}.first.try(:[],:profit) %></td>
-        <td><%= value.select{|val| val[:month]=='06'}.first.try(:[],:profit) %></td>
-        <td><%= value.select{|val| val[:month]=='07'}.first.try(:[],:profit) %></td>
-        <td><%= value.select{|val| val[:month]=='08'}.first.try(:[],:profit) %></td>
-        <td><%= value.select{|val| val[:month]=='09'}.first.try(:[],:profit) %></td>
-        <td><%= value.select{|val| val[:month]=='10'}.first.try(:[],:profit)%></td>
-        <td><%= value.select{|val| val[:month]=='11'}.first.try(:[],:profit)%></td>
-        <td><%= value.select{|val| val[:month]=='12'}.first.try(:[],:profit) %></td>
-
+         <% month_value.each do |i| %>
+         <td><%= value.select{|val| val[:month]==i}.first.try(:[],:profit) %></td>
+         <% end %>
       </tr>
 
   </tbody>

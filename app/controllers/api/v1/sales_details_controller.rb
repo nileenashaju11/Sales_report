@@ -26,7 +26,7 @@ class Api::V1::SalesDetailsController < ApplicationController
          buy_price:last_buy_price,
          quantity:trans_quantity,
          sales:sales,
-         profit: profit
+         profit: profit.round(2)
       }
 
     end
@@ -65,7 +65,7 @@ class Api::V1::SalesDetailsController < ApplicationController
          buy_price:last_buy_price,
          quantity:trans_quantity,
          sales:sales,
-         profit: profit
+         profit: profit.round(2)
       }
 
     end
