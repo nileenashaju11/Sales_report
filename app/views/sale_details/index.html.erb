@@ -118,11 +118,11 @@ Highcharts.chart('container', {
 
 
 <div>
-	<style>
-		table, th, td {
+    <style>
+        table, th, td {
   border: 1px solid black;
 }
-	</style>
+    </style>
 
 
 <div>
@@ -131,7 +131,7 @@ Highcharts.chart('container', {
   <thead>
     <% months=['Jan','Feb','Mar','Apr','May','Jun','July','Aug','Sep','Oct','Nov',"Dec"]%>
     <tr>
-      <th>Year</th>	
+      <th>Year</th> 
       <% months.each do |month_name| %>
      <th><%= month_name %></th>
       <% end %>
@@ -141,7 +141,7 @@ Highcharts.chart('container', {
   </thead>
 
   <tbody>
-  	<% @sale_months_alt.each_pair do |key,value| %>
+    <% @monthly_salereport_data.each_pair do |key,value| %>
      <% month_value=['01','02','03','04','05','06','07','08','09','10','11',"12"]%>
     
       <tr>
@@ -170,7 +170,7 @@ Highcharts.chart('container', {
 
   <tbody>
     <% month_value=['01','02','03','04','05','06','07','08','09','10','11',"12"]%>
-  	<% @sale_months_alt.each_pair do |key,value| %>
+    <% @monthly_salereport_data.each_pair do |key,value| %>
      <tr>
         <td><%= key %></td>
          <% month_value.each do |i| %>
